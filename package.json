@@ -1,0 +1,80 @@
+{
+  "name": "backend-developer-codetest",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:watch": "./node_modules/.bin/nodemon --watch src --exec node src/index.js",
+    "lint": "./node_modules/.bin/eslint \"src\\**\" \"test\\**\" ",
+    "lint:fix": "./node_modules/.bin/eslint \"src\\**\" \"test\\**\" --fix",
+    "test": "./node_modules/.bin/ava -v",
+    "test:watch": "./node_modules/.bin/ava -v --watch",
+    "test:unit:watch": "./node_modules/.bin/ava test/unit -v --watch",
+    "test:integration:watch": "./node_modules/.bin/ava test/integration --watch",
+    "coveralls": "yarn coverage && ./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls",
+    "coverage": "./node_modules/.bin/nyc ./node_modules/.bin/ava -v",
+    "coverage:watch": "./node_modules/.bin/nodemon --watch src --watch test --exec ./node_modules/.bin/nyc ./node_modules/.bin/ava",
+    "ci": "yarn lint && yarn coverage"
+  },
+  "author": "Elateral Ltd",
+  "license": "Proprietary - Elateral Ltd Use Only",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ElateralLtd/backend-developer-codetest"
+  },
+  "ava": {
+    "files": [
+      "test/unit/**/*.js",
+      "test/integration/**/*.js",
+      "test/*.js"
+    ],
+    "sources": [
+      "src/**/*.js"
+    ],
+    "concurrency": 5,
+    "failFast": false,
+    "tap": false,
+    "powerAssert": false
+  },
+  "nyc": {
+    "lines": 0,
+    "statements": 0,
+    "functions": 0,
+    "branches": 0,
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "src/dbVersioner/*.js"
+    ],
+    "reporter": [
+      "text",
+      "lcov",
+      "html"
+    ],
+    "sourceMap": false,
+    "instrument": true,
+    "cache": false,
+    "all": true,
+    "check-coverage": true
+  },
+  "dependencies": {
+    "apollo-server": "^3.6.4",
+    "graphql": "^16.3.0",
+    "graphql-request": "^4.2.0"
+  },
+  "devDependencies": {
+    "ava": "1.4.1",
+    "chai": "^4.3.6",
+    "coveralls": "3.0.0",
+    "eslint": "4.19.1",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-plugin-import": "2.11.0",
+    "nodemon": "1.15.1",
+    "nyc": "11.7.1",
+    "proxyquire": "2.0.1",
+    "sinon": "5.0.3"
+  },
+  "peerDependencies": {
+    "joi": "14.3.1"
+  }
+}

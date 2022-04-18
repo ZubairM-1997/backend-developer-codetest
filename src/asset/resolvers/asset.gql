@@ -1,0 +1,18 @@
+const assetController = require('../assetController');
+
+const resolvers = {
+  Query: {
+    asset: (root, { id }, ctx) => assetController.read({ctx, id}),
+  },
+  Mutation: {
+    asset: (root, { name, description}, ctx) => assetController.write({ctx, name, description})
+  },
+  Asset: {
+    __resolveType(data, _, ctx) {
+      return 'BasicAsset';
+    },
+  }
+};
+
+module.exports = resolvers;
+
