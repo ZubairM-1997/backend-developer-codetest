@@ -7,6 +7,8 @@ Simple graphql micro-service
 - The graphql schema contains an interface named Asset and a concrete type that implements that interface named BasicAsset
 - A query allows us to read an asset by id
 
+To get started, first install the dependancies by entering 'yarn install' on the terminal
+
 ## Linting
 
 yarn lint
